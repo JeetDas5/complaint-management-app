@@ -511,17 +511,17 @@ const AdminPage = () => {
                       <Label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                         Category
                       </Label>
-                      <p className="mt-1">
+                      <div className="mt-1">
                         <Badge variant="outline" className="capitalize">
                           {selectedComplaint.category}
                         </Badge>
-                      </p>
+                      </div>
                     </div>
                     <div>
                       <Label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                         Priority
                       </Label>
-                      <p className="mt-1">
+                      <div className="mt-1">
                         <Badge
                           variant={getPriorityBadgeVariant(
                             selectedComplaint.priority
@@ -530,7 +530,7 @@ const AdminPage = () => {
                         >
                           {selectedComplaint.priority}
                         </Badge>
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -538,14 +538,14 @@ const AdminPage = () => {
                       <Label className="text-sm font-medium text-slate-700 dark:text-slate-300">
                         Status
                       </Label>
-                      <p className="mt-1">
+                      <div className="mt-1">
                         <Badge
                           variant={getStatusBadgeVariant(selectedComplaint.status)}
                           className="capitalize"
                         >
                           {selectedComplaint.status.replace("-", " ")}
                         </Badge>
-                      </p>
+                      </div>
                     </div>
                     <div>
                       <Label className="text-sm font-medium text-slate-700 dark:text-slate-300">

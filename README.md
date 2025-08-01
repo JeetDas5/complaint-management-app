@@ -1,4 +1,4 @@
-# 🎯 Complaint Management System
+# Complaint Management System
 
 A modern, full-stack complaint management application built with Next.js, MongoDB, and TypeScript. This system allows users to submit complaints and administrators to manage them efficiently with automated email notifications.
 
@@ -11,7 +11,7 @@ A modern, full-stack complaint management application built with Next.js, MongoD
 
 [Deployed URL](https://complaint-management-app-ashy.vercel.app/)
 
-## ✨ Features
+## Features
 
 - **User Authentication**: Secure registration and login system with JWT tokens
 - **Role-Based Access**: Separate interfaces for users and administrators
@@ -21,7 +21,7 @@ A modern, full-stack complaint management application built with Next.js, MongoD
 - **Responsive Design**: Modern UI that works on all devices
 - **Admin Dashboard**: Comprehensive admin panel for complaint management
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -65,7 +65,7 @@ A modern, full-stack complaint management application built with Next.js, MongoD
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🗄️ MongoDB Setup
+## MongoDB Setup
 
 
 ### MongoDB Atlas (Cloud)
@@ -95,7 +95,7 @@ The system includes two beautiful HTML email templates:
 - **Status Update**: Sent when complaint status changes
 
 
-## 🔐 Authentication & Authorization
+## Authentication & Authorization
 
 ### User Roles
 - **User**: Can submit and view their own complaints
@@ -111,7 +111,7 @@ The system includes two beautiful HTML email templates:
 }
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Authentication Endpoints
 
@@ -293,7 +293,7 @@ Authorization: Bearer admin_jwt_token_here
 }
 ```
 
-## 🎨 Application Screenshots
+## Application Screenshots
 
 ### Home Page
 ![Home Page](public/screenshots/home.png)
@@ -320,7 +320,7 @@ Authorization: Bearer admin_jwt_token_here
 *Beautiful HTML email notifications for new complaints and status updates*
 
 
-## 🛠️ Development
+## Development
 
 ### Project Structure
 ```
@@ -365,7 +365,7 @@ npm run lint     # Run ESLint
 | `ADMIN_EMAILS` | Comma-separated admin emails | `admin@example.com,admin2@example.com` |
 | `JWT_SECRET` | Secret key for JWT tokens | `your-super-secret-key-here` |
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 1. Push code to GitHub
@@ -403,7 +403,7 @@ Error: jwt malformed
 - Check JWT_SECRET in environment variables
 - Ensure token is properly formatted in Authorization header
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -411,11 +411,11 @@ Error: jwt malformed
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Next.js](https://nextjs.org/) - React framework
 - [MongoDB](https://www.mongodb.com/) - Database

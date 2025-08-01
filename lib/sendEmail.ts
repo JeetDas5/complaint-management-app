@@ -8,10 +8,13 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-export function sendEmail(to: string, subject: string, text: string) {
+const adminEmail =
+  process.env.ADMIN_EMAILS?.split(",")[0] || "jeetdas1508@gmail.com";
+
+export function sendEmail(subject: string, text: string) {
   const mailOptions = {
-    from: "jeet15083011@gmail.com",
-    to,
+    from: adminEmail,
+    to: adminEmail,
     subject,
     text,
   };

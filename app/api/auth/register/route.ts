@@ -9,7 +9,9 @@ export async function POST(request: NextRequest) {
 
   const ADMIN_EMAILS = process.env.ADMIN_EMAILS?.split(",") || [];
 
-  const { name, email, password } = await request.json();
+  const { name, email, password, role } = await request.json();
+
+  console.log("Registration request received:", { name, email, role });
 
   if (!name || !email || !password) {
     return NextResponse.json(
@@ -36,13 +38,18 @@ export async function POST(request: NextRequest) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const isAdmin = ADMIN_EMAILS.includes(email);
+    // Use the role from the request, but validate it
+    const validRole = role === "admin" || role === "user" ? role : "user";
+
+    // Optional: You can still check ADMIN_EMAILS as an additional security layer
+    // const isAdminEmail = ADMIN_EMAILS.includes(email);
+    // const finalRole = (validRole === "admin" && isAdminEmail) ? "admin" : validRole;
 
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
-      role: isAdmin ? "admin" : "user",
+      role: validRole,
     });
     if (!user) {
       return NextResponse.json(

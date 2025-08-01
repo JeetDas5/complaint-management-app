@@ -7,6 +7,10 @@ A modern, full-stack complaint management application built with Next.js, MongoD
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.18.0-green)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-blue)
 
+## Live Demo
+
+[Deployed URL](https://complaint-management-app-ashy.vercel.app/)
+
 ## ✨ Features
 
 - **User Authentication**: Secure registration and login system with JWT tokens
@@ -29,7 +33,7 @@ A modern, full-stack complaint management application built with Next.js, MongoD
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/JeetDas5/complaint-management-app
    cd complaint-management-app
    ```
 
@@ -63,19 +67,6 @@ A modern, full-stack complaint management application built with Next.js, MongoD
 
 ## 🗄️ MongoDB Setup
 
-### Local MongoDB
-1. Install MongoDB Community Edition
-2. Start MongoDB service:
-   ```bash
-   # Windows
-   net start MongoDB
-   
-   # macOS
-   brew services start mongodb-community
-   
-   # Linux
-   sudo systemctl start mongod
-   ```
 
 ### MongoDB Atlas (Cloud)
 1. Create account at [MongoDB Atlas](https://www.mongodb.com/atlas)
@@ -103,7 +94,6 @@ The system includes two beautiful HTML email templates:
 - **New Complaint**: Sent when a complaint is submitted
 - **Status Update**: Sent when complaint status changes
 
-Preview templates at: `http://localhost:3000/email-preview`
 
 ## 🔐 Authentication & Authorization
 

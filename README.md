@@ -79,7 +79,7 @@ The application automatically creates these collections:
 - `users` - User accounts and authentication
 - `complaints` - Complaint records with status tracking
 
-## 📧 Email Configuration
+## Email Configuration
 
 ### Gmail Setup
 1. Enable 2-Factor Authentication on your Gmail account

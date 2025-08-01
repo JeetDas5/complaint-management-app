@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import ClientOnly from "@/components/ClientOnly";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/hooks/useAuth";
@@ -67,7 +66,6 @@ const AdminPage = () => {
   const [mounted, setMounted] = useState(false);
   const [dialogLoading, setDialogLoading] = useState(false);
 
-  // Filter states
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -229,7 +227,6 @@ const AdminPage = () => {
 
   const formatDate = (dateString: string) => {
     if (!mounted) {
-      // Return a simple format during SSR to prevent hydration mismatch
       return new Date(dateString).toISOString().split('T')[0];
     }
 
@@ -242,7 +239,6 @@ const AdminPage = () => {
         minute: "2-digit",
       });
     } catch (error) {
-      // Fallback if date formatting fails
       return new Date(dateString).toISOString().split('T')[0];
     }
   };
@@ -257,7 +253,7 @@ const AdminPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                  Complaint Management
+                  Admin Dashboard
                 </h1>
                 <p className="text-slate-600 dark:text-slate-300 mt-2">
                   Manage and track all customer complaints
@@ -481,7 +477,6 @@ const AdminPage = () => {
           )}
         </div>
 
-        <ClientOnly>
           <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
@@ -603,7 +598,6 @@ const AdminPage = () => {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-        </ClientOnly>
       </main >
       <Footer />
     </div >

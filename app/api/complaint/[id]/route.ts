@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { verifyToken } from "@/lib/auth";
 import Complaint from "@/models/Complaint";
 import { sendEmail } from "@/lib/sendEmail";
+import { generateStatusUpdateEmail } from "@/lib/emailTemplates";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
@@ -39,7 +40,7 @@ export async function PATCH(
       );
     }
 
-    const complaint = await Complaint.findByIdAndUpdate(id, { status });
+    const complaint = await Complaint.findById(id).populate("user", "name email");
 
     if (!complaint) {
       return NextResponse.json(
@@ -55,13 +56,25 @@ export async function PATCH(
       );
     }
 
-    const emailSubject = `Complaint Status Updated: ${complaint.title}`;
-    const emailText = `The status of the complaint titled "${complaint.title}" has been updated to "${status}".\n\nDescription: ${complaint.description}\nCategory: ${complaint.category}\nPriority: ${complaint.priority}\nDate Submitted: ${complaint.dateSubmitted.toISOString()}\n\nPlease take the necessary actions.`;
+    const previousStatus = complaint.status;
+    
+    const updatedComplaint = await Complaint.findByIdAndUpdate(
+      id, 
+      { status }, 
+      { new: true }
+    ).populate("user", "name email");
 
-    sendEmail(emailSubject, emailText);
+    const { subject, html } = generateStatusUpdateEmail(
+      updatedComplaint, 
+      updatedComplaint.user, 
+      previousStatus
+    );
+    const fallbackText = `The status of the complaint titled "${complaint.title}" has been updated to "${status}".\n\nDescription: ${complaint.description}\nCategory: ${complaint.category}\nPriority: ${complaint.priority}\nDate Submitted: ${complaint.dateSubmitted.toISOString()}\n\nPlease take the necessary actions.`;
+
+    sendEmail(subject, fallbackText, html);
 
     return NextResponse.json(
-      { message: "Complaint updated successfully", complaint },
+      { message: "Complaint updated successfully", complaint: updatedComplaint },
       { status: 200 }
     );
   } catch (error) {

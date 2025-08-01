@@ -22,7 +22,6 @@ export const useAuth = () => {
 
     const decodeToken = (token: string) => {
         try {
-            // Simple JWT decode (just for getting payload, not verifying)
             const base64Url = token.split('.')[1]
             const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
             const jsonPayload = decodeURIComponent(

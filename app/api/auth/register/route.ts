@@ -38,12 +38,7 @@ export async function POST(request: NextRequest) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Use the role from the request, but validate it
     const validRole = role === "admin" || role === "user" ? role : "user";
-
-    // Optional: You can still check ADMIN_EMAILS as an additional security layer
-    // const isAdminEmail = ADMIN_EMAILS.includes(email);
-    // const finalRole = (validRole === "admin" && isAdminEmail) ? "admin" : validRole;
 
     const user = await User.create({
       name,

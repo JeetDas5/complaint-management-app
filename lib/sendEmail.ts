@@ -11,12 +11,13 @@ export const transporter = nodemailer.createTransport({
 const adminEmail =
   process.env.ADMIN_EMAILS?.split(",")[0] || "jeetdas1508@gmail.com";
 
-export function sendEmail(subject: string, text: string) {
+export function sendEmail(subject: string, text: string, html?: string) {
   const mailOptions = {
     from: adminEmail,
     to: adminEmail,
     subject,
     text,
+    ...(html && { html })
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

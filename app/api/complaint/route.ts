@@ -4,6 +4,7 @@ import { verifyToken } from "@/lib/auth";
 import Complaint from "@/models/Complaint";
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/sendEmail";
+import { generateNewComplaintEmail } from "@/lib/emailTemplates";
 
 export async function POST(request: NextRequest) {
   await connectDB();
@@ -49,10 +50,10 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    const emailSubject = `New Complaint Created: ${complaint.title}`;
-    const emailText = `A new complaint has been created:\n\nTitle: ${complaint.title}\nDescription: ${complaint.description}\nCategory: ${complaint.category}\nPriority: ${complaint.priority}\nSubmitted by: ${user.name} (${user.email})`;
+    const { subject, html } = generateNewComplaintEmail(complaint, user);
+    const fallbackText = `A new complaint has been created:\n\nTitle: ${complaint.title}\nDescription: ${complaint.description}\nCategory: ${complaint.category}\nPriority: ${complaint.priority}\nSubmitted by: ${user.name} (${user.email})`;
 
-    sendEmail(emailSubject, emailText);
+    sendEmail(subject, fallbackText, html);
 
     return NextResponse.json(
       { message: "Complaint created successfully", complaint },
